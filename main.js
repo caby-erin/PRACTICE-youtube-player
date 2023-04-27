@@ -162,9 +162,27 @@ const eventListeners = () => {
   
   // FILTER BUTTON ROW
   document.querySelector('#filterContainer').addEventListener('click', (e) => {
-    console.log("You clicked a filter button", e.target.id);
+    //console.log("You clicked a filter button", e.target.id);
     // filter on category (either use .filter or a loop)
+    if (e.target.id === "clear"){
+      cardsOnDom(data);
+    } else if (e.target.id === "favorite"){
+      const favs = data.filter(taco => taco.favorite === true);
+      cardsOnDom(favs);
+    } else if (e.target.id){
+      const topics = data.filter (taco => taco.category === e.target.id);
+      cardsOnDom(topics);
+    }
+
+
+
+
+
+
+
     // rerender DOM with new array (use the cardsOnDom function)
+  
+
   });
 
   // BUTTONS ON CARDS
@@ -215,7 +233,9 @@ const startApp = () => {
   videoPlayer();
   filterButtons();
   cardsOnDom(data);
-  // eventListeners(); // always last
+  eventListeners(); 
 };
+
+
 
 startApp();
